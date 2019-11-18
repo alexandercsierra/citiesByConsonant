@@ -1,12 +1,32 @@
 //code to extract cities from wikipedia.org
 
-// var city = Array.prototype.slice.call(document.querySelectorAll('td > a'));
-// var names = [];
-// function findCities (arr){ for (let i=0; i<arr.length; i++) {if (typeof arr[i].innerHTML === "string"); {names.push(arr[i].innerHTML);}} return names;}
-// findCities(city);
-// console.log(JSON.stringify(names));
+var city = Array.prototype.slice.call(document.querySelectorAll('td > a'));
+var names = [];
+function findCities (arr){ for (let i=0; i<arr.length; i++) {if (typeof arr[i].innerHTML === "string"); {names.push(arr[i].innerHTML);}} return names;}
+findCities(city);
+console.log(JSON.stringify(names));
+
+var body = document.querySelector("body");
+var input = document.querySelector("input");
+var button = document.querySelector("button");
+
+// var inputVal = input.value;
 
 
+button.addEventListener("click", function(e){
+    e.preventDefault();
+    var inputVal = input.value;
+    if (states.includes(inputVal.toLowerCase())){
+        for (let item of stateVars){
+            if (stateVar[item] === inputVal.toLowerCase()){
+                return "yay, here's your array" + stateVar[item];
+            }
+        }
+
+    }  else {
+        console.log("oops enter a state please")
+    }
+});
 
 
 
@@ -18,7 +38,7 @@ let cities = [];
 
 //function will take parameters of a state string and a state array of cities
 function findAMatch (str, arr){
-  
+    body.style.backgroundColor = "black";
   var stateComp = str.toLowerCase();
   //create an array of consonants for state string
   var state = str.match(/[b-df-hj-np-tv-z]/gi);
@@ -37,7 +57,9 @@ function findAMatch (str, arr){
             let dupCity = checkIfSame(cityName, state, city);
             //prevents duplicates from being added to the final array
             if (cities.includes(dupCity) === false){
-                cities.push(dupCity);
+                cities.push(dupCity); 
+                body.style.backgroundColor = "green";
+                
                 if (dupCity === stateComp && dupCity !== "new york"){
                     cities.pop();
                     return "no match";
@@ -81,3 +103,5 @@ function checkIfDuplicateExists(w){
 }
 
 // findAMatch("alabama", alabama);
+
+
