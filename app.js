@@ -19,6 +19,9 @@ var input = document.querySelector("input");
 var button = document.querySelector("button");
 var feedback = document.querySelector(".feedback");
 var currentList = document.querySelector(".currentList");
+var reset = document.querySelector(".reset");
+var secondPara = document.querySelector(".secondPara");
+var firstPara = document.querySelector(".firstPara");
 var citiesList = [];
 
 // var inputVal = input.value;
@@ -40,11 +43,21 @@ button.addEventListener("click", function(e) {
         
       }
     }
-  } else {
-    console.log("oops enter a state please");
+  } else {  
+    feedback.textContent = "Oops enter a valid state name, please";
+    input.value="";
+    
   }
   inputVal = "";
 });
+
+reset.addEventListener("click", function(e){
+  location.reload();
+});
+
+
+
+
 
 let cities = [];
 
@@ -81,7 +94,7 @@ function findAMatch(str, arr) {
 
           if (dupCity === stateComp && dupCity !== "new york") {
             cities.pop();
-            return "no match";
+            return "No Match";
           }
         }
       }
@@ -137,18 +150,21 @@ function respond(citiesList, arr) {
     if (citiesList.length === 1 && (arr.includes(match)=== true)) {
       console.log("first answer");
       feedback.textContent =
-        "Awesome, you found one: " + citiesList[0] + ", " + input.value;
+        "Awesome, you found one: " + cap(citiesList[0]) + ", " + cap(input.value);
+      input.value = "";
+    } else if (citiesList.length === 1 && (arr.includes(match)=== false)){
+      feedback.textContent = "no match";
       input.value = "";
     }
     else if (citiesList.length > 1 && citiesList.length < 5) {
       if (arr.includes(lastMatch) === true) {
         console.log("some answers");
         feedback.textContent =
-          "Awesome, you've found another: " + last + ", " + input.value + "! Only " + (5-citiesList.length) + " left to find.";
+          "Awesome, you've found another: " + cap(last) + ", " + cap(input.value) + "! Only " + (5-citiesList.length) + " left to find.";
         input.value = ""; 
         // return "The current list of matching cities: " +  lcitiesList;
       } else {
-        feedback.textContent = "no match";
+        feedback.textContent = "Try Again";
         input.value = "";
       } 
     } else if (citiesList.length === 5) {
@@ -156,7 +172,12 @@ function respond(citiesList, arr) {
       body.style.backgroundColor = "blue";
       feedback.textContent =
         "Congrats you found them all! Mobile Alabama, Alford Florida, Saline Lousiana, New York New York, and Hawi, Hawaii!";
-        
+      firstPara.style.fontSize = "3rem";
+      firstPara.style.textAlign = "center";
+      firstPara.style.marginTop = "4%";
+      firstPara.textContent = "Great Job!";
+      reset.classList.remove("hide");
+      secondPara.classList.add("hide");
       input.value = "";
     }input.value = "";
   } else {
@@ -174,17 +195,17 @@ function currentCities(arr){
     str = "";
     return str;
   } else if (arr.length === 1){
-    str += arr[0];
+    str += cap(arr[0]);
     return str;
   } else if (arr.length > 1 && arr.length < 5){
     for (i=0; i<arr.length; i++){
       if (arr[i+1] !== undefined){
         // console.log("This is before concat" + str);
-      str += arr[i] + ", ";
+      str += cap(arr[i]) + ", ";
       // console.log("This is after concat" + str);
       } 
       else {
-        str += arr[i];
+        str += cap(arr[i]);
         console.log("This is in the else:" + str);
         return str;
       }
@@ -194,4 +215,12 @@ function currentCities(arr){
   }
 // return str;
 }
+
+function cap (str){
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
+
+
 // findAMatch("alabama", alabama);

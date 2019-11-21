@@ -1,0 +1,155 @@
+*{
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input, button, submit { border:none; } 
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    background: black;
+    color: white;
+}
+header{
+    /* background: rgba(0,0,0,.8); */
+    background-image: url("/images/usa.jpg");
+    background-position: 50% 20%;
+    /* background-position: 50% 50%; */
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.filter {
+    background: rgba(0,0,0,.7);
+    /* background: rgba(255,255,255,.5); */
+    /* background: rgba(0,255,0,.7); */
+}
+
+h1{
+    padding: 4% 4% 0 4%;
+}
+
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+
+p.firstPara {
+
+    padding: 4% 28%;
+    text-align: left;
+}
+
+p.secondPara {
+    text-align: center;
+    padding: 0 20%;
+    margin-top: -1.5%;
+    margin-bottom: 2%;
+
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin: 4% 0%;
+    width: 35%;
+    padding: 1% 2%;
+    font-size: 1.1rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+button {
+    font-size: 1.1rem;
+    padding: 1% 1.5%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.feedback{
+    width: 100%;
+    margin-bottom: 5%;
+    /* padding: 0 0%; */
+    text-align: center;
+
+}
+
+.currentList{
+    text-align: center;
+}
+
+.reset{
+    background: white;
+    padding: .5% 1%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.reset p {
+    color:blue;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
+@media (max-width: 1000px){
+    p.firstPara {
+        padding: 4% 10%;
+    }
+
+    p.secondPara {
+        padding: 0 10%;
+    }
+
+    section{
+        margin-top: 10%;
+    }
+
+    .feedback {
+        padding: 0 20%;
+    }
+}
+
+@media (max-width: 600px){
+    p{
+        font-size: 1.1rem;
+    }
+
+    input {
+        font-size: 1rem;
+        width: 75%;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+
+    .feedback, .currentList {
+        padding: 0 10%;
+        font-size: 1.1rem;
+    }
+}
